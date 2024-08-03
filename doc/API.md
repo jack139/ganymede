@@ -265,7 +265,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/user/update
+> http://\<host\>:\<port\>/api/\<version\>/tx/user/update
 
 请求方式
 
@@ -326,7 +326,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/user/audit
+> http://\<host\>:\<port\>/api/\<version\>/tx/user/audit
 
 请求方式
 
@@ -383,7 +383,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/kv/new
+> http://\<host\>:\<port\>/api/\<version\>/tx/kv/new
 
 请求方式
 
@@ -441,7 +441,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/kv/update
+> http://\<host\>:\<port\>/api/\<version\>/tx/kv/update
 
 请求方式
 
@@ -499,7 +499,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/kv/delete
+> http://\<host\>:\<port\>/api/\<version\>/tx/kv/delete
 
 请求方式
 
@@ -554,7 +554,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/exchange/ask
+> http://\<host\>:\<port\>/api/\<version\>/tx/exchange/ask
 
 请求方式
 
@@ -612,7 +612,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/exchange/reply
+> http://\<host\>:\<port\>/api/\<version\>/tx/exchange/reply
 
 请求方式
 
@@ -674,7 +674,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/post/send
+> http://\<host\>:\<port\>/api/\<version\>/tx/post/send
 
 请求方式
 
@@ -734,7 +734,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/post/ask
+> http://\<host\>:\<port\>/api/\<version\>/tx/post/ask
 
 请求方式
 
@@ -794,7 +794,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/post/reply
+> http://\<host\>:\<port\>/api/\<version\>/tx/post/reply
 
 请求方式
 
@@ -864,7 +864,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/user/list
+> http://\<host\>:\<port\>/api/\<version\>/q/user/list
 
 请求方式
 
@@ -934,7 +934,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/user/info
+> http://\<host\>:\<port\>/api/\<version\>/q/user/info
 
 请求方式
 
@@ -999,7 +999,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/user/verify
+> http://\<host\>:\<port\>/api/\<version\>/q/user/verify
 
 请求方式
 
@@ -1061,7 +1061,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/bank/balance
+> http://\<host\>:\<port\>/api/\<version\>/q/bank/balance
 
 请求方式
 
@@ -1117,7 +1117,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/kv/list
+> http://\<host\>:\<port\>/api/\<version\>/q/kv/list
 
 请求方式
 
@@ -1185,7 +1185,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/kv/show
+> http://\<host\>:\<port\>/api/\<version\>/q/kv/show
 
 请求方式
 
@@ -1245,7 +1245,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/exchange/ask/list
+> http://\<host\>:\<port\>/api/\<version\>/q/exchange/ask/list
 
 请求方式
 
@@ -1320,7 +1320,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/exchange/reply/list
+> http://\<host\>:\<port\>/api/\<version\>/q/exchange/reply/list
 
 请求方式
 
@@ -1397,7 +1397,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/exchange/reply/show
+> http://\<host\>:\<port\>/api/\<version\>/q/exchange/reply/show
 
 请求方式
 
@@ -1464,7 +1464,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/post/sent/list
+> http://\<host\>:\<port\>/api/\<version\>/q/post/sent/list
 
 请求方式
 
@@ -1547,7 +1547,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/post/timeout/list
+> http://\<host\>:\<port\>/api/\<version\>/q/post/timeout/list
 
 请求方式
 
@@ -1626,7 +1626,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/post/recv/list
+> http://\<host\>:\<port\>/api/\<version\>/q/post/recv/list
 
 请求方式
 
@@ -1707,7 +1707,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/post/recv/show
+> http://\<host\>:\<port\>/api/\<version\>/q/post/recv/show
 
 请求方式
 
@@ -1780,7 +1780,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/block/tx
+> http://\<host\>:\<port\>/api/\<version\>/q/block/tx
 
 请求方式
 
@@ -2119,7 +2119,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/block/txs
+> http://\<host\>:\<port\>/api/\<version\>/q/block/txs
 
 请求方式
 
@@ -2309,7 +2309,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/q/block/height
+> http://\<host\>:\<port\>/api/\<version\>/q/block/height
 
 请求方式
 
