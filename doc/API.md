@@ -189,7 +189,7 @@ SM2加签结果（每次不同）：
 
 请求URL
 
-> http://<host>:<port>/api/<version>/tx/user/new
+> http://\<host\>:\<port\>/api/\<version\>/tx/user/new
 
 请求方式
 
