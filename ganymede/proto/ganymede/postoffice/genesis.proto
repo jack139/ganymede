@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package ganymede.postoffice;
+
+import "gogoproto/gogo.proto";
+import "ganymede/postoffice/params.proto";
+import "ganymede/postoffice/post.proto";
+import "ganymede/postoffice/sent_post.proto";
+import "ganymede/postoffice/timedout_post.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/postoffice/types";
+
+// GenesisState defines the postoffice module's genesis state.
+message GenesisState {
+           Params       params            = 1 [(gogoproto.nullable) = false];
+           string       port_id           = 2;
+  repeated Post         postList          = 3 [(gogoproto.nullable) = false];
+           uint64       postCount         = 4;
+  repeated SentPost     sentPostList      = 5 [(gogoproto.nullable) = false];
+           uint64       sentPostCount     = 6;
+  repeated TimedoutPost timedoutPostList  = 7 [(gogoproto.nullable) = false];
+           uint64       timedoutPostCount = 8;
+}
+

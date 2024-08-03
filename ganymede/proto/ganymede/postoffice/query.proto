@@ -1,0 +1,210 @@
+syntax = "proto3";
+
+package ganymede.postoffice;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "ganymede/postoffice/params.proto";
+import "ganymede/postoffice/post.proto";
+import "ganymede/postoffice/sent_post.proto";
+import "ganymede/postoffice/timedout_post.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/postoffice/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/params";
+  
+  }
+  
+  // Queries a list of Post items.
+  rpc Post    (QueryGetPostRequest) returns (QueryGetPostResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/post/{id}";
+  
+  }
+  rpc PostAll (QueryAllPostRequest) returns (QueryAllPostResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/post";
+  
+  }
+  
+  // Queries a list of SentPost items.
+  rpc SentPost    (QueryGetSentPostRequest) returns (QueryGetSentPostResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/sent_post/{id}";
+  
+  }
+  rpc SentPostAll (QueryAllSentPostRequest) returns (QueryAllSentPostResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/sent_post";
+  
+  }
+  
+  // Queries a list of TimedoutPost items.
+  rpc TimedoutPost    (QueryGetTimedoutPostRequest) returns (QueryGetTimedoutPostResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/timedout_post/{id}";
+  
+  }
+  rpc TimedoutPostAll (QueryAllTimedoutPostRequest) returns (QueryAllTimedoutPostResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/timedout_post";
+  
+  }
+  
+  // Queries a list of ListPostBySender items.
+  rpc ListPostBySender (QueryListPostBySenderRequest) returns (QueryListPostBySenderResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/list_post_by_sender/{sender}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListPostByReceiver items.
+  rpc ListPostByReceiver (QueryListPostByReceiverRequest) returns (QueryListPostByReceiverResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/list_post_by_receiver/{receiver}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListSentBySender items.
+  rpc ListSentBySender (QueryListSentBySenderRequest) returns (QueryListSentBySenderResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/list_sent_by_sender/{sender}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListSentByReceiver items.
+  rpc ListSentByReceiver (QueryListSentByReceiverRequest) returns (QueryListSentByReceiverResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/list_sent_by_receiver/{receiver}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListTimeoutBySender items.
+  rpc ListTimeoutBySender (QueryListTimeoutBySenderRequest) returns (QueryListTimeoutBySenderResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/list_timeout_by_sender/{sender}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListTimeoutByReceiver items.
+  rpc ListTimeoutByReceiver (QueryListTimeoutByReceiverRequest) returns (QueryListTimeoutByReceiverResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/postoffice/list_timeout_by_receiver/{receiver}/{page}/{limit}";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetPostRequest {
+  uint64 id = 1;
+}
+
+message QueryGetPostResponse {
+  Post Post = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPostRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPostResponse {
+  repeated Post                                   Post       = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSentPostRequest {
+  uint64 id = 1;
+}
+
+message QueryGetSentPostResponse {
+  SentPost SentPost = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSentPostRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSentPostResponse {
+  repeated SentPost                               SentPost   = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetTimedoutPostRequest {
+  uint64 id = 1;
+}
+
+message QueryGetTimedoutPostResponse {
+  TimedoutPost TimedoutPost = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllTimedoutPostRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllTimedoutPostResponse {
+  repeated TimedoutPost                           TimedoutPost = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+}
+
+message QueryListPostBySenderRequest {
+  string sender = 1;
+  uint64 page   = 2;
+  uint64 limit  = 3;
+}
+
+message QueryListPostBySenderResponse {
+  repeated Post post = 1;
+}
+
+message QueryListPostByReceiverRequest {
+  string receiver = 1;
+  uint64 page     = 2;
+  uint64 limit    = 3;
+}
+
+message QueryListPostByReceiverResponse {
+  repeated Post post = 1;
+}
+
+message QueryListSentBySenderRequest {
+  string sender = 1;
+  uint64 page   = 2;
+  uint64 limit  = 3;
+}
+
+message QueryListSentBySenderResponse {
+  repeated SentPost sentPost = 1;
+}
+
+message QueryListSentByReceiverRequest {
+  string receiver = 1;
+  uint64 page     = 2;
+  uint64 limit    = 3;
+}
+
+message QueryListSentByReceiverResponse {
+  repeated SentPost sentPost = 1;
+}
+
+message QueryListTimeoutBySenderRequest {
+  string sender = 1;
+  uint64 page   = 2;
+  uint64 limit  = 3;
+}
+
+message QueryListTimeoutBySenderResponse {
+  repeated TimedoutPost timedoutPost = 1;
+}
+
+message QueryListTimeoutByReceiverRequest {
+  string receiver = 1;
+  uint64 page     = 2;
+  uint64 limit    = 3;
+}
+
+message QueryListTimeoutByReceiverResponse {
+  repeated TimedoutPost timedoutPost = 1;
+}
+

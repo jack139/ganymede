@@ -1,0 +1,16 @@
+syntax = "proto3";
+package ganymede.exchange;
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/exchange/types";
+
+message Ask {
+  uint64 id = 1;
+  string sender = 2; 
+  string replier = 3; 
+  string payload = 4; 
+  string sentDate = 5; 
+  string creator = 6; 
+  string linkSender = 7; 
+  string linkReplier = 8; 
+  
+}

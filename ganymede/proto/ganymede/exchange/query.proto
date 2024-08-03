@@ -1,0 +1,150 @@
+syntax = "proto3";
+
+package ganymede.exchange;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "ganymede/exchange/params.proto";
+import "ganymede/exchange/ask.proto";
+import "ganymede/exchange/reply.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/exchange/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/params";
+  
+  }
+  
+  // Queries a list of Ask items.
+  rpc Ask    (QueryGetAskRequest) returns (QueryGetAskResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/ask/{id}";
+  
+  }
+  rpc AskAll (QueryAllAskRequest) returns (QueryAllAskResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/ask";
+  
+  }
+  
+  // Queries a list of Reply items.
+  rpc Reply    (QueryGetReplyRequest) returns (QueryGetReplyResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/reply/{id}";
+  
+  }
+  rpc ReplyAll (QueryAllReplyRequest) returns (QueryAllReplyResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/reply";
+  
+  }
+  
+  // Queries a list of ListAskBySender items.
+  rpc ListAskBySender (QueryListAskBySenderRequest) returns (QueryListAskBySenderResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/list_ask_by_sender/{sender}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListAskByReplier items.
+  rpc ListAskByReplier (QueryListAskByReplierRequest) returns (QueryListAskByReplierResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/list_ask_by_replier/{replier}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListReplyBySender items.
+  rpc ListReplyBySender (QueryListReplyBySenderRequest) returns (QueryListReplyBySenderResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/list_reply_by_sender/{sender}/{page}/{limit}";
+  
+  }
+  
+  // Queries a list of ListReplyByReplier items.
+  rpc ListReplyByReplier (QueryListReplyByReplierRequest) returns (QueryListReplyByReplierResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/exchange/list_reply_by_replier/{replier}/{page}/{limit}";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAskRequest {
+  uint64 id = 1;
+}
+
+message QueryGetAskResponse {
+  Ask Ask = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAskRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAskResponse {
+  repeated Ask                                    Ask        = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetReplyRequest {
+  uint64 id = 1;
+}
+
+message QueryGetReplyResponse {
+  Reply Reply = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllReplyRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllReplyResponse {
+  repeated Reply                                  Reply      = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryListAskBySenderRequest {
+  string sender = 1;
+  uint64 page   = 2;
+  uint64 limit  = 3;
+}
+
+message QueryListAskBySenderResponse {
+  repeated Ask ask = 1;
+}
+
+message QueryListAskByReplierRequest {
+  string replier = 1;
+  uint64 page    = 2;
+  uint64 limit   = 3;
+}
+
+message QueryListAskByReplierResponse {
+  repeated Ask ask = 1;
+}
+
+message QueryListReplyBySenderRequest {
+  string sender = 1;
+  uint64 page   = 2;
+  uint64 limit  = 3;
+}
+
+message QueryListReplyBySenderResponse {
+  repeated Reply reply = 1;
+}
+
+message QueryListReplyByReplierRequest {
+  string replier = 1;
+  uint64 page    = 2;
+  uint64 limit   = 3;
+}
+
+message QueryListReplyByReplierResponse {
+  repeated Reply reply = 1;
+}
+

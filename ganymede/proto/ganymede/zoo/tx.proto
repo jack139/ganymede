@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package ganymede.zoo;
+
+import "ganymede/zoo/kvzoo.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/zoo/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc CreateKvzoo (MsgCreateKvzoo) returns (MsgCreateKvzooResponse);
+  rpc UpdateKvzoo (MsgUpdateKvzoo) returns (MsgUpdateKvzooResponse);
+  rpc DeleteKvzoo (MsgDeleteKvzoo) returns (MsgDeleteKvzooResponse);
+}
+message MsgCreateKvzoo {
+  string creator   = 1;
+  string owner     = 2;
+  string zooKey    = 3;
+  string zooValue  = 4;
+  string lastDate  = 5;
+  string linkOwner = 6;
+}
+
+message MsgCreateKvzooResponse {}
+
+message MsgUpdateKvzoo {
+  string creator   = 1;
+  string owner     = 2;
+  string zooKey    = 3;
+  string zooValue  = 4;
+  string lastDate  = 5;
+  string linkOwner = 6;
+}
+
+message MsgUpdateKvzooResponse {}
+
+message MsgDeleteKvzoo {
+  string creator = 1;
+  string owner   = 2;
+  string zooKey  = 3;
+}
+
+message MsgDeleteKvzooResponse {}
+

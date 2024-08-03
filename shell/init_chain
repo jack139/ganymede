@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+if (($# < 3))
+then
+	echo "init_chain.sh <chain-id> <home-dir> <node-name>"
+	exit 0
+fi
+
+EXEC_NAME="build/ganymeded"
+CHAIN_ID="$1"
+HOME_DIR="$2"
+MONIKER="${CHAIN_ID}_$3"
+NODE_USER="${MONIKER}_owner"
+IBC_USER="${MONIKER}_relayer"
+
+rm -rf $HOME_DIR
+
+$EXEC_NAME init $MONIKER --home $HOME_DIR --chain-id $CHAIN_ID
+
+$EXEC_NAME keys add $NODE_USER --home $HOME_DIR --keyring-backend test
+$EXEC_NAME keys add $IBC_USER --home $HOME_DIR --keyring-backend test
+
+$EXEC_NAME add-genesis-account $($EXEC_NAME keys show $NODE_USER -a --home $HOME_DIR --keyring-backend test) 100000000stake,1credit --home $HOME_DIR
+$EXEC_NAME add-genesis-account $($EXEC_NAME keys show $IBC_USER -a --home $HOME_DIR --keyring-backend test) 1000stake --home $HOME_DIR
+
+$EXEC_NAME gentx $NODE_USER 100000000stake --chain-id $CHAIN_ID --home $HOME_DIR --keyring-backend test
+
+echo "Collecting genesis txs..."
+$EXEC_NAME collect-gentxs --home $HOME_DIR
+
+echo "Validating genesis file..."
+$EXEC_NAME validate-genesis --home $HOME_DIR
+
+#$EXEC_NAME start --log_level warn --home $HOME_DIR

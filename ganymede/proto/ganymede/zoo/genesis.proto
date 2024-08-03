@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package ganymede.zoo;
+
+import "gogoproto/gogo.proto";
+import "ganymede/zoo/params.proto";
+import "ganymede/zoo/kvzoo.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/zoo/types";
+
+// GenesisState defines the zoo module's genesis state.
+message GenesisState {
+           Params params    = 1 [(gogoproto.nullable) = false];
+  repeated Kvzoo  kvzooList = 2 [(gogoproto.nullable) = false];
+}
+

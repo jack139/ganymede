@@ -1,0 +1,31 @@
+
+# HTTP 服务端参数
+API:
+    Port: 8001
+    Addr: 0.0.0.0
+    SM2PrivateKey: "JShsBOJL0RgPAoPttEB1hgtPAvCikOl0V1oTOYL7k5U=" # SM2私钥
+    AppIdSecret: { # 接口调用分配的 appid 和 sevret
+        "bdecaa718f290152925e8d570c71adfe": "YWQ2YjZjNmE3MTVjZTNlNzhiMjk2YjI2MGYyYzI2ZDllNGUyMjRiNyAgLQo=",
+        "1ff3a3d2c1a8c236423ea3fe7bbdcff6": "ZDlmZjk2YmNlMTEyNDYzN2E4ZGRlMWJhMTYyZDcxZDIxMjRkYTIwZiAgLQo=",
+        "4fcf3871f4a023712bec9ed44ee4b709": "MjdjNGQxNGU3NjA1OWI0MGVmODIyN2FkOTEwYTViNDQzYTNjNTIyNSAgLQo=",
+    }
+    RequestTimestampDiff: 300 # api请求timestamp与服务器时间差异(秒)，大于差异绝对值将被拒绝
+    MaxSizeKey: 512 # key最大尺寸
+    MaxSizeAsk: 1024 # 请求数据最大尺寸 1K
+    MaxSizePayload: 10240 # 数据包最大尺寸 10K
+    MaxSizeIpfs: 10485760 # IPFS文件最大尺寸 10M
+
+# 后台服务队列的参数
+Server:
+    IpfsEnable: true
+    IpfsServer: "127.0.0.1:5001"
+    IBCIpfsEnable: true
+    IBCIpfsServer: "127.0.0.1:5001"
+
+Chain:
+    ChainID: "testchain1"
+    NodeUser : "testchain1_node1_owner"
+    RelayUser : "testchain1_node1_relayer"
+    IBCChannel: [ #  可用的IBC channel
+        "channel-0",
+    ]

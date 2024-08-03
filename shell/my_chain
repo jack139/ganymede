@@ -1,0 +1,78 @@
+#!/bin/sh
+
+CHAIN_DIR="/opt/ai/app/ganymede"
+CHAIN_BIN=$CHAIN_DIR"/bin"
+CHAIN_CONFIG=$CHAIN_DIR"/config"
+CHAIN_RUNTIME=$CHAIN_DIR"/runtime"
+LOG_PATH="/opt/ai/logs"
+
+start_back() {
+	nohup $CHAIN_BIN"/ganymeded" start --log_level warn --home $CHAIN_RUNTIME"/n1" >> $LOG_PATH"/chain_n1.log" 2>&1 &
+	nohup $CHAIN_BIN"/ganymeded" --home $CHAIN_RUNTIME"/n1" http --yaml $CHAIN_CONFIG"/settings1.yaml" >> $LOG_PATH"/chain_n1_http.log" 2>&1 &
+
+	nohup $CHAIN_BIN"/ganymeded" start --log_level warn --home $CHAIN_RUNTIME"/n2" >> $LOG_PATH"/chain_n2.log" 2>&1 &
+	nohup $CHAIN_BIN"/ganymeded" --home $CHAIN_RUNTIME"/n2" http --yaml $CHAIN_CONFIG"/settings2.yaml" >> $LOG_PATH"/chain_n2_http.log" 2>&1 &
+
+	nohup $CHAIN_BIN"/rly" --home $CHAIN_RUNTIME"/relayer" start ibc-path-12 2>&1 >> $LOG_PATH"/relayer.log" 2>&1 &
+
+	return 0 
+}
+
+stop_back() {
+	kill -9 `pgrep -f "rly"`
+	kill -9 `pgrep -f "ganymeded"`
+	return 0
+}
+
+status() {
+	ps -f -C ganymeded -C rly
+	return 0
+}
+
+restart() {
+	stop_back
+	sleep 2
+	start_back
+}
+
+
+case "$1" in
+	start)
+	case "$2" in
+	  back)
+		start_back
+		RETVAL=$?
+		;;
+	  *)
+		start_back
+		RETVAL=$?
+		;;
+	esac
+	;;
+	stop)
+	case "$2" in
+	  back)
+		stop_back
+		RETVAL=$?
+		;;
+	  *)
+		stop_back
+		RETVAL=$?
+		;;
+	esac 
+	;;
+	restart)
+	restart
+	RETVAL=$?
+	;;
+	status)
+	status
+	RETVAL=$?
+	;;
+	*)
+	echo $"Usage: my_chain {start|stop|restart} {back|all} | status"
+	RETVAL=2
+	;;
+esac
+
+exit $RETVAL

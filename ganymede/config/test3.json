@@ -1,0 +1,16 @@
+{
+  "type": "cosmos",
+  "value": {
+    "key": "testchain3_node3_relayer",
+    "chain-id": "testchain3",
+    "rpc-addr": "http://127.0.0.1:26677",
+    "account-prefix": "saturn",
+    "keyring-backend": "test",
+    "gas-adjustment": 1.2,
+    "gas-prices": "0.0000000001stake",
+    "debug": true,
+    "timeout": "20s",
+    "output-format": "json",
+    "sign-mode": "direct"
+  }
+}

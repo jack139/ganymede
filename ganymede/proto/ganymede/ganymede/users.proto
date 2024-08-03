@@ -1,0 +1,21 @@
+syntax = "proto3";
+package ganymede.ganymede;
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/ganymede/types";
+
+message Users {
+  string chainAddr = 1; 
+  string keyName = 2; 
+  string userType = 3; 
+  string name = 4; 
+  string address = 5; 
+  string phone = 6; 
+  string accountNo = 7; 
+  string ref = 8; 
+  string regDate = 9; 
+  string status = 10; 
+  string lastDate = 11; 
+  string linkStatus = 12; 
+  string creator = 13;
+}
+

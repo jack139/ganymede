@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>区块链应用平台 - API 接口演示</title>
+</head>
+<style>
+pre { /* 兼容多个浏览器*/
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    *word-wrap: break-word;
+    *white-space : normal ;
+
+    font-family: Consolas,"courier new";
+    color: crimson;
+    background-color: #f1f1f1;
+    padding: 2px;
+    font-size: 105%;
+    display: inline-block; 
+    width: 90%; 
+}
+</style>
+<body>
+    <h2>接口调用</h2>
+    <h3>接口url</h3>
+    <pre>{{ api_url }}</pre>
+    <h3>调用参数</h3>
+    <pre>{{ params }}</pre>
+    <h3>HTTP status</h3>
+    <pre>{{ status }}</pre>
+    <h3>返回结果</h3>
+    <pre>{{ result }}</pre>
+    <h3>接口耗时</h3>
+    <div>{{ timespan }}</div>
+    <br/>
+    <br/>
+    <a href=/chain_demo>返回</a>
+</body>
+</html>

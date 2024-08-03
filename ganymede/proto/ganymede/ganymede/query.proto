@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package ganymede.ganymede;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "ganymede/ganymede/params.proto";
+import "ganymede/ganymede/users.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/ganymede/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/ganymede/params";
+  
+  }
+  
+  // Queries a list of Users items.
+  rpc Users    (QueryGetUsersRequest) returns (QueryGetUsersResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/ganymede/users/{chainAddr}";
+  
+  }
+  rpc UsersAll (QueryAllUsersRequest) returns (QueryAllUsersResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/ganymede/users";
+  
+  }
+  
+  // Queries a list of ListByStatus items.
+  rpc ListByStatus (QueryListByStatusRequest) returns (QueryListByStatusResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/ganymede/list_by_status/{status}/{page}/{limit}";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetUsersRequest {
+  string chainAddr = 1;
+}
+
+message QueryGetUsersResponse {
+  Users users = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllUsersRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllUsersResponse {
+  repeated Users                                  users      = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryListByStatusRequest {
+  string status = 1;
+  uint64 page   = 2;
+  uint64 limit  = 3;
+}
+
+message QueryListByStatusResponse {
+  repeated Users users = 1;
+}
+

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ganymede.exchange;
+
+import "gogoproto/gogo.proto";
+import "ganymede/exchange/params.proto";
+import "ganymede/exchange/ask.proto";
+import "ganymede/exchange/reply.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/exchange/types";
+
+// GenesisState defines the exchange module's genesis state.
+message GenesisState {
+           Params params     = 1 [(gogoproto.nullable) = false];
+  repeated Ask    askList    = 2 [(gogoproto.nullable) = false];
+           uint64 askCount   = 3;
+  repeated Reply  replyList  = 4 [(gogoproto.nullable) = false];
+           uint64 replyCount = 5;
+}
+

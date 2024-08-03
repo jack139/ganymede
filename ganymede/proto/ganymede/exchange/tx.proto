@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package ganymede.exchange;
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/exchange/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc NewAsk   (MsgNewAsk  ) returns (MsgNewAskResponse  );
+  rpc NewReply (MsgNewReply) returns (MsgNewReplyResponse);
+}
+message MsgNewAsk {
+  string creator  = 1;
+  string sender   = 2;
+  string replier  = 3;
+  string payload  = 4;
+  string sentDate = 5;
+}
+
+message MsgNewAskResponse {}
+
+message MsgNewReply {
+  string creator  = 1;
+  string askId    = 2;
+  string sender   = 3;
+  string replier  = 4;
+  string payload  = 5;
+  string sentDate = 6;
+}
+
+message MsgNewReplyResponse {}
+

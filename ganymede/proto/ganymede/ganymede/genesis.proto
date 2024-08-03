@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package ganymede.ganymede;
+
+import "gogoproto/gogo.proto";
+import "ganymede/ganymede/params.proto";
+import "ganymede/ganymede/users.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/ganymede/types";
+
+// GenesisState defines the ganymede module's genesis state.
+message GenesisState {
+           Params params    = 1 [(gogoproto.nullable) = false];
+  repeated Users  usersList = 2 [(gogoproto.nullable) = false];
+}
+

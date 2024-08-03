@@ -1,0 +1,43 @@
+FROM --platform=linux ubuntu:22.04
+ENV BUILDARCH=amd64
+
+# Change your versions here
+ENV GO_VERSION=1.19.7
+ENV IGNITE_VERSION=0.27.1
+ENV NODE_VERSION=18.x
+
+ENV LOCAL=/usr/local
+ENV LOCAL_BIN=/usr/local/bin
+ENV GOROOT=$LOCAL/go
+ENV HOME=/root
+ENV GOPATH=$HOME/go
+ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+RUN mkdir -p $GOPATH/bin
+
+ENV PACKAGES curl gcc jq make
+RUN apt-get update
+RUN apt-get install -y $PACKAGES
+
+# Install Go
+RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-$BUILDARCH.tar.gz | tar -C $LOCAL -xzf -
+
+# Install Ignite 
+RUN curl -L https://github.com/ignite/cli/releases/download/v${IGNITE_VERSION}/ignite_${IGNITE_VERSION}_linux_$BUILDARCH.tar.gz | tar -C $LOCAL_BIN -xzf -
+
+# Install Node
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash -
+RUN apt-get install -y nodejs
+
+# Install others
+RUN apt-get install -y git
+
+RUN go env -w GO111MODULE=auto
+RUN go env -w GOPROXY=https://goproxy.cn
+
+RUN git clone https://github.com/cosmos/gogoproto.git && cd gogoproto && make build && make install
+
+ENV LANG=C.UTF-8
+EXPOSE 1317 3000 4500 5000 26657
+
+WORKDIR /ganymede

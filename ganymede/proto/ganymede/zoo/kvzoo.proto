@@ -1,0 +1,14 @@
+syntax = "proto3";
+package ganymede.zoo;
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/zoo/types";
+
+message Kvzoo {
+  string owner = 1; 
+  string zooKey = 2; 
+  string zooValue = 3; 
+  string lastDate = 4; 
+  string linkOwner = 5; 
+  string creator = 6;
+}
+

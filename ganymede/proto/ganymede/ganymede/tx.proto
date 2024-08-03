@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package ganymede.ganymede;
+
+import "ganymede/ganymede/users.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/ganymede/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc CreateUsers (MsgCreateUsers) returns (MsgCreateUsersResponse);
+  rpc UpdateUsers (MsgUpdateUsers) returns (MsgUpdateUsersResponse);
+  rpc DeleteUsers (MsgDeleteUsers) returns (MsgDeleteUsersResponse);
+}
+message MsgCreateUsers {
+  string creator    =  1;
+  string chainAddr  =  2;
+  string keyName    =  3;
+  string userType   =  4;
+  string name       =  5;
+  string address    =  6;
+  string phone      =  7;
+  string accountNo  =  8;
+  string ref        =  9;
+  string regDate    = 10;
+  string status     = 11;
+  string lastDate   = 12;
+  string linkStatus = 13;
+}
+
+message MsgCreateUsersResponse {}
+
+message MsgUpdateUsers {
+  string creator    =  1;
+  string chainAddr  =  2;
+  string keyName    =  3;
+  string userType   =  4;
+  string name       =  5;
+  string address    =  6;
+  string phone      =  7;
+  string accountNo  =  8;
+  string ref        =  9;
+  string regDate    = 10;
+  string status     = 11;
+  string lastDate   = 12;
+  string linkStatus = 13;
+}
+
+message MsgUpdateUsersResponse {}
+
+message MsgDeleteUsers {
+  string creator   = 1;
+  string chainAddr = 2;
+}
+
+message MsgDeleteUsersResponse {}
+

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package ganymede.postoffice;
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/postoffice/types";
+
+message PostofficePacketData {
+  oneof packet {
+    NoData            noData        = 1;
+    IbcPostPacketData ibcPostPacket = 2;
+  }
+}
+
+message NoData {}
+
+// IbcPostPacketData defines a struct for the packet payload
+message IbcPostPacketData {
+  string title    = 1;
+  string content  = 2;
+  string sentDate = 3;
+  string creator  = 4;
+}
+
+// IbcPostPacketAck defines a struct for the packet acknowledgment
+message IbcPostPacketAck {
+  string postID = 1;
+}
+

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package ganymede.postoffice;
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/postoffice/types";
+
+message SentPost {
+  uint64 id = 1;
+  string postID = 2; 
+  string title = 3; 
+  string payload = 4; 
+  string toChain = 5; 
+  string sender = 6; 
+  string receiver = 7; 
+  string sentDate = 8; 
+  string linkSender = 9; 
+  string linkReceiver = 10; 
+  
+}

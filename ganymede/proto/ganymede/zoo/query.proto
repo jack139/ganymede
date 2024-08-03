@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package ganymede.zoo;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "ganymede/zoo/params.proto";
+import "ganymede/zoo/kvzoo.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/zoo/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/zoo/params";
+  
+  }
+  
+  // Queries a list of Kvzoo items.
+  rpc Kvzoo    (QueryGetKvzooRequest) returns (QueryGetKvzooResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/zoo/kvzoo/{owner}/{zooKey}";
+  
+  }
+  rpc KvzooAll (QueryAllKvzooRequest) returns (QueryAllKvzooResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/zoo/kvzoo";
+  
+  }
+  
+  // Queries a list of ListByOwner items.
+  rpc ListByOwner (QueryListByOwnerRequest) returns (QueryListByOwnerResponse) {
+    option (google.api.http).get = "/cosmos-test/ganymede/zoo/list_by_owner/{owner}/{page}/{limit}";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetKvzooRequest {
+  string owner  = 1;
+  string zooKey = 2;
+}
+
+message QueryGetKvzooResponse {
+  Kvzoo kvzoo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllKvzooRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllKvzooResponse {
+  repeated Kvzoo                                  kvzoo      = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryListByOwnerRequest {
+  string owner = 1;
+  uint64 page  = 2;
+  uint64 limit = 3;
+}
+
+message QueryListByOwnerResponse {
+  repeated Kvzoo kvzoo = 1;
+}
+

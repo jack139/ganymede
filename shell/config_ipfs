@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ipfs bootstrap rm --all
+ipfs config --json API.HTTPHeaders.Access-ContrZZol-Allow-Origin '["*"]'
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials '["true"]'
+ipfs config --json Swarm.EnableAutoRelay 'true'
+
+echo "===============删除默认中继节点=============="
+for line in `cat shell/bootstrap.txt`
+do
+	echo "加入可信节点:$line"
+	ipfs bootstrap add $line
+done

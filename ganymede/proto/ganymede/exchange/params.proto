@@ -1,0 +1,12 @@
+syntax = "proto3";
+package ganymede.exchange;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/jack139/ganymede/ganymede/x/exchange/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}
