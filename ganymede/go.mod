@@ -1,6 +1,6 @@
 module github.com/jack139/ganymede/ganymede
 
-go 1.18
+go 1.19
 
 require (
 	cosmossdk.io/api v0.3.1
